@@ -27,6 +27,6 @@ variable "sg_names"{
         "eks_control_plane","eks_node",
 
         "jenkins","jenkins_agent",
-        "sonarqube"
+        "sonarqube", "runner"
     ]
 }

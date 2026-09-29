@@ -15,13 +15,13 @@ variable "domain_name" {
 }
 
 variable "sonarqube" {
-    default = true
+    default = false
 }
 
 variable "jenkins" {
-    default = true
+    default = false
 }
 
 variable "runner" {
-    default = false
+    default = true
 }

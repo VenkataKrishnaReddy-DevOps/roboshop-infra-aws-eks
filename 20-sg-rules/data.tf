@@ -54,3 +54,7 @@ data "aws_ssm_parameter" "sonarqube_sg_id" {
     name = "/${var.project}/${var.env}/sonarqube_sg_id"
 }
 
+data "aws_ssm_parameter" "runner_sg_id" {
+    name = "/${var.project}/${var.env}/runner_sg_id"
+}
+

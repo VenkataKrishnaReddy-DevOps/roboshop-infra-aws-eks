@@ -53,32 +53,32 @@ resource "aws_instance" "jenkins_agent" {
   )
 }
 
-# resource "aws_instance" "runner" {
-#   count = var.runner ? 1 : 0
-#   ami           = local.ami_id
-#   instance_type = "t3.micro"
-#   subnet_id = local.public_subnet_id
-#   vpc_security_group_ids = [ local.runner_sg_id ]
-#   user_data = file("runner.sh")
+resource "aws_instance" "runner" {
+  count = var.runner ? 1 : 0
+  ami           = local.ami_id
+  instance_type = "t3.micro"
+  subnet_id = local.public_subnet_id
+  vpc_security_group_ids = [ local.runner_sg_id ]
+  user_data = file("runner.sh")
 
-#   root_block_device {
-#     volume_size = 50
-#     volume_type = "gp3"
-#     tags = merge(
-#       {
-#           Name = "${var.project}-${var.env}-runner"
-#       },
-#     local.common_tags
-#     )
-#   }
+  root_block_device {
+    volume_size = 50
+    volume_type = "gp3"
+    tags = merge(
+      {
+          Name = "${var.project}-${var.env}-runner"
+      },
+    local.common_tags
+    )
+  }
 
-#   tags = merge(
-#     {
-#         Name = "${var.project}-${var.env}-runner"
-#     },
-#     local.common_tags
-#   )
-# }
+  tags = merge(
+    {
+        Name = "${var.project}-${var.env}-runner"
+    },
+    local.common_tags
+  )
+}
 
 resource "aws_instance" "sonarqube" {
   count = var.sonarqube ? 1 : 0

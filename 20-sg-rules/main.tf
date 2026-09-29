@@ -167,6 +167,16 @@ resource "aws_security_group_rule" "jenkins_agent_ssh" {
   security_group_id = local.jenkins_agent_sg_id
 }
 
+resource "aws_security_group_rule" "eks_control_plane_runner" {
+  type              = "ingress"
+  from_port         = 443
+  to_port           = 443
+  protocol          = "tcp" # all traffic
+  # VPC CIDR
+  source_security_group_id = local.runner_sg_id
+  security_group_id = local.eks_control_plane_sg_id
+}
+
 resource "aws_security_group_rule" "sonar_web" {
   type              = "ingress"
   from_port         = 9000
